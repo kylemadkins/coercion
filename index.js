@@ -2,14 +2,40 @@
  * @param {string} name
  * @return {boolean}
  */
-function isValidName(name) {}
+function isValidName(name) {
+  if (typeof name === "string") {
+    return name.trim().length > 3
+  }
+  return false;
+}
 
 /**
  * @param {number,string} attended
  * @param {number,string} length
  * @return {boolean}
  */
-function hoursAttended(attended, length) {}
+function hoursAttended(attended, length) {
+  if (attended && length) {
+    if (typeof attended === "string" && attended.length > 0) {
+      attended = Number(attended);
+    }
+
+    if (typeof length === "string" && length.length > 0) {
+      length = Number(length);
+    }
+  
+    if (
+      attended >= 0 &&
+      length >= 0 &&
+      Number.isInteger(attended) &&
+      Number.isInteger(length)
+    ) {
+      return attended <= length;
+    }
+  }
+
+  return false;
+}
 
 // Tests
 console.log("1: ", isValidName("Frank") === true);
